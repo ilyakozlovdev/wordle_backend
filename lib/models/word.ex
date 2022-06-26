@@ -1,4 +1,4 @@
-defmodule WordleBackend.Word do
+defmodule WordleBackend.Models.Word do
   use Ecto.Schema
   import Ecto.Changeset
 
