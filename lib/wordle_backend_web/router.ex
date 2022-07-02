@@ -18,6 +18,15 @@ defmodule WordleBackendWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    scope "/api", Api do
+      scope "/v1", V1 do
+        get "/words", WordsController, :index
+        get "/words/:id", WordsController, :show
+
+        post "/answer", AnswerController, :answer
+      end
+    end
   end
 
   # Other scopes may use custom stacks.

@@ -29,6 +29,8 @@ config :wordle_backend, WordleBackendWeb.Endpoint,
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
   ]
 
+config :wordle_backend, WordleBackend.Services.Words, filename: "./assets/data.json"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

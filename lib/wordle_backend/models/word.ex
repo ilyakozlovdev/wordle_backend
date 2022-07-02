@@ -2,6 +2,7 @@ defmodule WordleBackend.Models.Word do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, except: [:__meta__, :__struct__]}
   schema "words" do
     field :original, :string
     field :downcased, :string

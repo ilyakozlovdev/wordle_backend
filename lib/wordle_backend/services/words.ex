@@ -1,8 +1,8 @@
-defmodule WordleBackend.Services.WordMigrator do
+defmodule WordleBackend.Services.Words do
   alias WordleBackend.Models.Word
 
   def migrate do
-    File.read!('./assets/data.json')
+    File.read!(filename())
     |> Jason.decode!()
     |> Map.to_list()
     |> Enum.filter(fn {word, _} -> String.length(word) == 5 end)
@@ -15,6 +15,10 @@ defmodule WordleBackend.Services.WordMigrator do
     end)
     |> Enum.uniq_by(fn %Word{downcased: downcased} -> downcased end)
     |> Enum.sort_by(fn %Word{downcased: downcased} -> downcased end)
-    |> Enum.each(&WordleBackend.Repo.insert!/1)
+    |> Enum.map(&WordleBackend.Repo.insert!/1)
+  end
+
+  defp filename do
+    Keyword.get(Application.get_env(:wordle_backend, __MODULE__, [filename: ""]), :filename)
   end
 end

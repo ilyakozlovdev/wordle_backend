@@ -20,6 +20,8 @@ config :wordle_backend, WordleBackendWeb.Endpoint,
   secret_key_base: "5Sn3Z09oVVU3k/2mazUcMcRNUnrQQd0Md2g/2kvg8F0qhHdN2FX1zFIzphwRe+0o",
   server: false
 
+config :wordle_backend, WordleBackend.Services.Words, filename: "./test/fixtures/words.json"
+
 # In test we don't send emails.
 config :wordle_backend, WordleBackend.Mailer, adapter: Swoosh.Adapters.Test
 
